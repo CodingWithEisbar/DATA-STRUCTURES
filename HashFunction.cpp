@@ -23,5 +23,5 @@ vector<Company> ReadCompany(string file_name)
 
 long long HashString(string company_name)
 {
-    
+    //Hello mọi người, hôm nay mình sẽ viết function cho hash table nha
 }
