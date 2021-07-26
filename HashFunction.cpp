@@ -42,15 +42,21 @@ long long HashString(string company_name)
         temp = getLastCharacter(company_name, 20);
         for (int i = temp.size(); i > 0; i--)
         {
-            res = res + temp[i] * pow((p%m),i);
+            res = res + (temp[i] * pow((p%m),i));
         }
         return res;
     }
     else {
         for (int i = 0; i < company_name.size(); i++)
         {
-            res = res + temp[i] * pow((p%m),i);
+            res = res + (temp[i] * pow((p%m),i));
         }
         return res;
     }
 }
+
+Company* CreateHashTable (vector<Company> list_company)
+{
+    
+}
+
