@@ -23,6 +23,6 @@ vector<Company> ReadCompany(string file_name)
 long long HashString(string company_name)
 {   string temp;
     int p = 31, m = pow(10,9) + 9;
-    //if(company_name.size() < 20)()
+    // Hehe
     
 }
