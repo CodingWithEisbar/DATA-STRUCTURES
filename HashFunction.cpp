@@ -20,7 +20,7 @@ vector<Company> ReadCompany(string file_name)
     return res;
 }
 
-int getLastCharacter(string name, int character_number) 
+
 //Return ASCII value
 {
     string temp;
