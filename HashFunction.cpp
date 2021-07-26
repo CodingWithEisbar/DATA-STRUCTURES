@@ -20,9 +20,28 @@ vector<Company> ReadCompany(string file_name)
     return res;
 }
 
+int getLastCharacter(string name, int character_number) 
+//Return ASCII value
+{
+    string temp;
+    int n = name.size();
+    for (int i = n; i > n-character_number; i--)
+	{
+		temp += name[i];
+	}
+    int sum = 0;
+	for (int i = 0; i < temp.size(); i++)
+	{
+		sum = sum + temp[i];
+	}
+    return sum;
+}
+
 long long HashString(string company_name)
 {   string temp;
     int p = 31, m = pow(10,9) + 9;
-    // Hehe
+    if(company_name.size() > 20) {
+        
+    }
     
 }

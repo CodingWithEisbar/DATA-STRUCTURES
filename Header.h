@@ -15,6 +15,10 @@ struct Company{
 
 };
 
+//Stuff
+int getLastCharacter(string name, int character_number);
+
+//Hashing Function
 vector<Company> ReadCompany(string file_name);
 long long HashString(string company_name);
 
