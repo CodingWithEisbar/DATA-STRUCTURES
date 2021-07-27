@@ -17,6 +17,7 @@ struct Company{
 
 //Stuff
 string getLastCharacter(string name, int character_number);
+bool check (Company* list_company, long long index);
 
 //Hashing Function
 vector<Company> ReadCompany(string file_name);

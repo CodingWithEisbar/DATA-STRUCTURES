@@ -42,21 +42,42 @@ long long HashString(string company_name)
         temp = getLastCharacter(company_name, 20);
         for (int i = temp.size(); i > 0; i--)
         {
-            res = res + (temp[i] * pow((p%m),i));
+            res = res + (temp[i] * pow((p % m), i));
         }
         return res;
     }
-    else {
+    else
+    {
         for (int i = 0; i < company_name.size(); i++)
         {
-            res = res + (temp[i] * pow((p%m),i));
+            res = res + (temp[i] * pow((p % m), i));
         }
         return res;
     }
 }
 
-Company* CreateHashTable (vector<Company> list_company)
+bool check(Company *list_company, long long index)
+//Check the existence list element
 {
-    
+    if (list_company[index].name == "" && list_company[index].profit_tax == "" && list_company[index].address == "")
+        return 0;
+    return 1;
 }
 
+Company *CreateHashTable(vector<Company> list_company)
+{
+    Company *hashTable = new Company[2000];
+    for (auto i : list_company)
+    {
+        //Take the for-each-loop to go through the list_company
+        long long index = HashString(i.name);
+        long long cap_index;
+        while (check(hashTable, index))
+        {
+            index++;
+            if (index >= 2000) index = 0;
+            if (index == cap_index) return;
+        } hashTable[index]=i;
+    }
+    return hashTable;
+}
