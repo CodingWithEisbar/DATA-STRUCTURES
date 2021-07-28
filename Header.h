@@ -23,5 +23,7 @@ bool check (Company* list_company, long long index);
 vector<Company> ReadCompany(string file_name);
 long long HashString(string company_name);
 Company* CreateHashTable (vector<Company> list_company);
+void Insert(Company *list_company, Company ins_company);
+Company *Search(Company *hash_table, string company_name);
 
 #endif

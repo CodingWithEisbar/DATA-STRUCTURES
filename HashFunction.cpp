@@ -75,9 +75,40 @@ Company *CreateHashTable(vector<Company> list_company)
         while (check(hashTable, index))
         {
             index++;
-            if (index >= 2000) index = 0;
-            if (index == cap_index) return;
-        } hashTable[index]=i;
+            if (index >= 2000)
+                index = 0;
+            if (index == cap_index)
+                return;
+        }
+        hashTable[index] = i;
     }
     return hashTable;
+}
+
+void Insert(Company *list_company, Company ins_company)
+{
+    long long index = HashString(ins_company.name);
+    long long cap_index = index;
+    while (check(list_company, index))
+    {
+        index++;
+        if (index >= 2000)
+            index = 0;
+        if (index == cap_index)
+        {
+            cout << "Full\n";
+            return;
+        }
+    }
+    list_company[index] = ins_company;
+}
+
+Company *Search(Company *hash_table, string company_name)
+{
+    long long index = HashString(company_name);
+    while (hash_table[index].name != company_name && !check(hash_table, index))
+        index++;
+    if (hash_table[index].name != company_name)
+        return NULL;
+    return &hash_table[index];
 }
