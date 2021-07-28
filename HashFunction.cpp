@@ -72,7 +72,7 @@ Company *CreateHashTable(vector<Company> list_company)
         //Take the for-each-loop to go through the list_company
         long long index = HashString(i.name);
         long long cap_index;
-        while (check(hashTable, index))
+        while (check(hashTable, index)) //Collision Solution 
         {
             index++;
             if (index >= 2000)
