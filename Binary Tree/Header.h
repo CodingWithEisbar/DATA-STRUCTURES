@@ -5,6 +5,8 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
 struct Node{
@@ -17,5 +19,13 @@ void NodeLeftRight(Node *pRoot);
 void LeftNodeRight(Node *pRoot);
 void LeftRightNode(Node *pRoot);
 
+//Lab 4
+void levelOrder(Node *pRoot);
+int Height(Node *pRoot);
+int countNode(Node *pRoot);
+int sumNode(Node *pRoot);
+int heightNode(Node *pRoot, int value);
+int Level(Node *pRoot, Node *p);
+int countLeaf(Node *pRoot);
 
 #endif
