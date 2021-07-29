@@ -7,6 +7,10 @@
 #include <vector>
 using namespace std;
 
+struct Node{
+    string key;
+    string 
+}
 
 
 #endif

@@ -1,3 +1,4 @@
 #include "Header.h"
 
-//Binary Tree Function
+//Duyệt NLR
+void NLR (Node * pRoot)
