@@ -41,3 +41,23 @@ void LeftRightNode(Node *pRoot)
     LeftRightNode(pRoot->right);
     cout << pRoot->key;
 }
+
+//Lever Order:
+//In ra các node từ mức cao tới thấp, từ trái sang phải
+void levelOrder(Node *pRoot)
+{
+    if (pRoot == NULL)
+        return;
+    queue<Node *> q;
+    q.push(pRoot);
+    while (!q.empty())
+    {
+        Node *temp = q.front();
+        q.pop();
+        if (temp->left != NULL)
+            q.push(temp->left);
+        if (temp->right != NULL)
+            q.push(temp->right);
+        cout << temp->key;
+    }
+}
