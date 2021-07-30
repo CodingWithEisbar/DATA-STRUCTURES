@@ -1,6 +1,48 @@
 #include "Header.h"
 
-//Duyệt NLR (Node-Left-Right):
+Node *creatNode(int Data)
+{
+    Node *temp = new Node;
+    if (temp == NULL)
+        cout << "Error: Not enough memory!\n";
+    temp->key = Data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+void Insert(Node *&pRoot, int x)
+{
+    Node *temp;
+    queue<Node *> q;
+    q.push(pRoot);
+    while (!q.empty())
+    {
+        temp = q.front();
+        q.pop();
+
+        // Chèn node bên trái của rễ
+        if (temp->left == NULL)
+        {
+            temp->left = creatNode(x);
+            break;
+        }
+        // Nếu node bên trái đó không mang giá trị NULL thì tiến hành push vào queue
+        else
+            q.push(temp->left);
+ 
+        // Chèn node về phía tay phải của rễ
+        if (temp->right == NULL)
+        {
+            temp->right = creatNode(x);
+            break;
+        }
+        // Nếu node phải đó cũng không mang giá trị NULL thì tiến hành push vào queue
+        else q.push(temp->right); 
+    }
+}
+
+//Duyệt NLR (PreOrder Travesal)
 /*In ra node gốc
 Duyệt cây bên trái
 Duyệt cây bên phải
@@ -14,7 +56,7 @@ void NodeLeftRight(Node *pRoot)
     NodeLeftRight(pRoot->right);
 }
 
-//Duyệt LNR (Left-Node-Right):
+//Duyệt LNR (InOrder Travesal)
 /*Duyệt cây bên trái trước
 In ra node gốc 
 Duyệt cây bên phải 
@@ -28,7 +70,7 @@ void LeftNodeRight(Node *pRoot)
     LeftNodeRight(pRoot->right);
 }
 
-//Duyệt LRN (Left-Right-Node):
+//Duyệt LRN (PostOrder Travesal)
 /* Duyệt cây bên trái
 Duyệt cây bên phải 
 In ra node gốc 
@@ -117,7 +159,8 @@ int Level(Node *pRoot, Node *p)
             q1.push(temp->left);
             q2.push(x + 1);
         }
-        if(temp->right != NULL){
+        if (temp->right != NULL)
+        {
             q1.push(temp->right);
             q2.push(x + 1);
         }
@@ -127,7 +170,9 @@ int Level(Node *pRoot, Node *p)
 
 int countLeaf(Node *pRoot)
 {
-    if(pRoot == NULL) return 0;
-    if(pRoot->left == NULL && pRoot->right == NULL) return 1;
+    if (pRoot == NULL)
+        return 0;
+    if (pRoot->left == NULL && pRoot->right == NULL)
+        return 1;
     return countLeaf(pRoot->left) + countLeaf(pRoot->right);
 }

@@ -14,11 +14,14 @@ struct Node{
     Node *left, *right; 
 };
 
-//Binary Traversal Functions: Các hàm duyệt cây nhị phân
+//Binary Tree Traversal Functions: Các hàm duyệt cây nhị phân
 void NodeLeftRight(Node *pRoot);
 void LeftNodeRight(Node *pRoot);
 void LeftRightNode(Node *pRoot);
 
+//Các hàm thao tác với cây nhị phân
+Node *creatNode(int Data);
+void Insert(Node *&pRoot, int x);
 //Lab 4
 void levelOrder(Node *pRoot);
 int Height(Node *pRoot);
