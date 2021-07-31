@@ -21,24 +21,25 @@ void Insert(Node *&pRoot, int x)
         temp = q.front();
         q.pop();
 
-        // Chèn node bên trái của rễ
+        //Chèn node bên trái của rễ
         if (temp->left == NULL)
         {
             temp->left = creatNode(x);
             break;
         }
-        // Nếu node bên trái đó không mang giá trị NULL thì tiến hành push vào queue
+        //Nếu node bên trái đó không mang giá trị NULL thì tiến hành push vào queue
         else
             q.push(temp->left);
- 
-        // Chèn node về phía tay phải của rễ
+
+        //Chèn node về phía tay phải của rễ
         if (temp->right == NULL)
         {
             temp->right = creatNode(x);
             break;
         }
-        // Nếu node phải đó cũng không mang giá trị NULL thì tiến hành push vào queue
-        else q.push(temp->right); 
+        //Nếu node phải đó cũng không mang giá trị NULL thì tiến hành push vào queue
+        else
+            q.push(temp->right);
     }
 }
 
