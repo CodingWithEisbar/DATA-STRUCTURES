@@ -24,7 +24,7 @@ int Level(Node *pRoot, Node *p);
 int countLeaf(Node *pRoot);
 int countNode(Node *pRoot);
 int countLess(Node *pRoot, int x);
-int countMore(Node *pRoot, int x);
+int countGreater(Node *pRoot, int x);
 bool isBST(Node *pRoot);
 bool isFullBST(Node *pRoot);
 

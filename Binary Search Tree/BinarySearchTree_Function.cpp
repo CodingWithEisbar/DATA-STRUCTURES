@@ -1,5 +1,6 @@
 #include "Header.h"
 
+//.1
 Node *createNode(int data)
 {
     Node *temp = new Node;
@@ -11,6 +12,7 @@ Node *createNode(int data)
     return temp;
 }
 
+//.2
 void Insert(Node *&pRoot, int x)
 {
     if (pRoot == NULL)
@@ -24,6 +26,7 @@ void Insert(Node *&pRoot, int x)
         Insert(pRoot->right, x);
 }
 
+//.6
 void LevelOrder(Node *pRoot)
 {
     if (pRoot == NULL)
@@ -42,6 +45,7 @@ void LevelOrder(Node *pRoot)
     }
 }
 
+//.11
 void Remove(Node *&pRoot, int x)
 {
     if (pRoot == NULL)
@@ -94,6 +98,7 @@ void Remove(Node *&pRoot, int x)
     }
 }
 
+//.12
 Node *createTree(int a[], int n)
 {
     Node *pRoot = NULL;
@@ -104,6 +109,7 @@ Node *createTree(int a[], int n)
     return pRoot;
 }
 
+//.13
 void removeTree(Node *&pRoot)
 {
     while (pRoot != NULL)
@@ -112,6 +118,7 @@ void removeTree(Node *&pRoot)
     }
 }
 
+//.15
 int Level(Node *pRoot, Node *p)
 {
     if (pRoot == NULL)
@@ -142,6 +149,7 @@ int Level(Node *pRoot, Node *p)
     return 0;
 }
 
+//.16
 int countLeaf(Node *pRoot)
 {
     if (pRoot == NULL)
@@ -151,6 +159,8 @@ int countLeaf(Node *pRoot)
     return countLeaf(pRoot->left) + countLeaf(pRoot->right);
 }
 
+//.8
+/* Đếm số lượng node có trong 1 cây nhị phân cho trước */
 int countNode(Node *pRoot)
 {
     if (pRoot == NULL)
@@ -158,6 +168,8 @@ int countNode(Node *pRoot)
     return countNode(pRoot->left) + countNode(pRoot->right) + 1;
 }
 
+//.17
+/* Đếm số node, trong 1 cây nhị phân cho trước, mà key của nó nhỏ hơn giá trị nạp vào hàm */
 int countLess(Node *pRoot, int x)
 {
     if (pRoot == NULL)
@@ -176,7 +188,8 @@ int countLess(Node *pRoot, int x)
     }
 }
 
-int countMore(Node *pRoot, int x)
+//.18
+int countGreater(Node *pRoot, int x)
 {
     if (pRoot == NULL)
         return 0;
@@ -186,11 +199,11 @@ int countMore(Node *pRoot, int x)
     }
     if (pRoot->key > x)
     {
-        return countNode(pRoot->right) + 1 + countMore(pRoot->left, x);
+        return countNode(pRoot->right) + 1 + countGreater(pRoot->left, x);
     }
     if (pRoot->key < x)
     {
-        return countMore(pRoot->right, x);
+        return countGreater(pRoot->right, x);
     }
 }
 
@@ -208,6 +221,7 @@ int findMax(Node *pRoot)
     return max(max(findMax(pRoot->left), findMax(pRoot->right)), pRoot->key);
 }
 
+//.19
 bool isBST(Node *pRoot)
 {
     if (pRoot == NULL)
@@ -218,6 +232,7 @@ bool isBST(Node *pRoot)
     }
 }
 
+//.20
 bool isFullBST(Node *pRoot)
 {
     if (pRoot == NULL)
@@ -226,4 +241,5 @@ bool isFullBST(Node *pRoot)
         return true;
     if (pRoot->left != NULL && pRoot->right != NULL)
         return isBST(pRoot) && isFullBST(pRoot->left) && isFullBST(pRoot->right);
+    return false;
 }
