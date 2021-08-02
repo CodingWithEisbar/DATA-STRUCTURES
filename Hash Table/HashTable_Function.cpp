@@ -1,4 +1,4 @@
-#include "Header.h"
+#include "HashTable_Header.h"
 
 vector<Company> ReadCompany(string file_name)
 {
