@@ -26,6 +26,14 @@ void Insert(Node *&pRoot, int x)
         Insert(pRoot->right, x);
 }
 
+//.7
+int Height(Node* pRoot)
+{
+    if(pRoot == NULL) return 0;
+    if(pRoot->left == NULL && pRoot->right == NULL) return 1;
+    return max(Height(pRoot->left), Height(pRoot->right)) + 1;
+}
+
 //.6
 void LevelOrder(Node *pRoot)
 {
@@ -43,6 +51,31 @@ void LevelOrder(Node *pRoot)
             q.push(temp->right);
         cout << temp->key << "  ";
     }
+}
+
+//.8
+int CountNode(Node *pRoot)
+{
+    if(pRoot == NULL) return 0;
+    return countNode(pRoot->left) + countNode(pRoot->right) + 1;
+
+}
+
+//.9
+int sumNode(Node *pRoot)
+{
+    if(pRoot == NULL) return 0;
+    int sum = 0;
+    return sumNode(pRoot->left) + sumNode(pRoot->right) + pRoot->key;
+}
+
+//.10
+Node* Search (Node* pRoot, int key)
+{
+    if(pRoot == NULL) return NULL;
+    if(pRoot->key == key) return pRoot;
+    if(pRoot->key > key) return Search(pRoot->left, key);
+    if(pRoot->key < key) return Search(pRoot->right, key);
 }
 
 //.11
