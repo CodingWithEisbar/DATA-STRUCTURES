@@ -1,4 +1,13 @@
 #include "Header.h"
+Node *createTree(int a[], int n)
+{
+    Node *pRoot = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        Insert(pRoot, a[i]);
+    }
+    return pRoot;
+}
 
 Node *creatNode(int Data)
 {
@@ -176,4 +185,27 @@ int countLeaf(Node *pRoot)
     if (pRoot->left == NULL && pRoot->right == NULL)
         return 1;
     return countLeaf(pRoot->left) + countLeaf(pRoot->right);
+}
+
+//Xoá cây nhị phân
+/*Chúng ta sẽ duyệt cây theo kiểu PostOrder sau đó 
+xoá lần lượt ptử bên trái bên phải của cây và cuối cùng là node gốc của cây*/
+void deleteTreeMechanism(Node *pRoot)
+{
+    if(pRoot == NULL) return;
+    
+    //Đầu tiên chúng ta xoá hai node con của 1 node gốc
+    deleteTreeMechanism(pRoot->left);
+    deleteTreeMechanism(pRoot->right);
+
+    //Sau đó là delete node gốc
+    delete pRoot;
+}
+
+void deleteTree(Node ** pRoot_ref)
+{
+    deleteTreeMechanism(*pRoot_ref);
+    *pRoot_ref = NULL; 
+    /*Nếu không set phần tử Root = NULL thì sẽ gây ra lỗi nếu user 
+    cố gắng sử dụng con trỏ root để truy cập vào giá trị*/
 }

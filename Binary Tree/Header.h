@@ -20,6 +20,7 @@ void LeftNodeRight(Node *pRoot);
 void LeftRightNode(Node *pRoot);
 
 //Các hàm thao tác với cây nhị phân
+Node *createTree(int a[], int n);
 Node *creatNode(int Data);
 void Insert(Node *&pRoot, int x);
 //Lab 4
@@ -30,5 +31,6 @@ int sumNode(Node *pRoot);
 int heightNode(Node *pRoot, int value);
 int Level(Node *pRoot, Node *p);
 int countLeaf(Node *pRoot);
-
+void deleteTreeMechanism(Node *pRoot);
+void deleteTree(Node ** pRoot_ref);
 #endif
