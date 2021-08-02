@@ -2,58 +2,48 @@
 
 vector<Company> ReadCompany(string file_name)
 {
-    fstream input(file_name.c_str());
-    vector<Company> res;
-    string company;
+    fstream input(file_name);
+    string sample, name, tax, address;
+    getline(input, sample); // Bỏ qua dòng đầu tiên
+    Company after_string_token;
+    vector<Company> companies;
     while (!input.eof())
     {
-
-        getline(input, company);
-        stringstream ss(company);
-        Company temp;
-        getline(ss, temp.name, '|');
-        getline(ss, temp.profit_tax, '|');
-        getline(ss, temp.address, '\n');
-        res.push_back(temp);
+        getline(input, sample);
+        stringstream ss(sample);
+        getline(ss, name, '|');
+        getline(ss, tax, '|');
+        getline(ss, address);
+        after_string_token.name = name;
+        after_string_token.profit_tax = tax;
+        after_string_token.address = address;
+        companies.push_back(after_string_token);
     }
     input.close();
-    return res;
+    return companies;
 }
 
-string getLastCharacter(string name, int character_number)
-//Return ASCII value
+long long HashCalculate(int p, int i, int m)
 {
-    string temp;
-    int n = name.size();
-    for (int i = n; i > n - character_number; i--)
-    {
-        temp += name[i];
+    long long result = p;
+    for(int j=1; j < i; j++){
+        result = result * p;
+        result = result % m;
     }
-    return temp;
+    return result;
 }
 
 long long HashString(string company_name)
 {
-    string temp;
-    int p = 31, m = pow(10, 9) + 9;
-    long long res = 0;
-    if (company_name.size() > 20)
-    {
-        temp = getLastCharacter(company_name, 20);
-        for (int i = temp.size(); i > 0; i--)
-        {
-            res = res + (temp[i] * pow((p % m), i));
-        }
-        return res;
+    int length = (company_name.size() > 20) ? 20 : company_name.size(); //Condition Operators
+    int begin = (company_name.size() > 20) ? company_name.size() - 20 : 0;
+    long long m = pow(10,9)+9;
+    long long hashValue = 0;
+    for(int i = begin; i < (begin + length - 1);i++){
+        hashValue = hashValue + int(company_name[i]) * HashCalculate(31, i - begin, m);
+        hashValue = hashValue % m;
     }
-    else
-    {
-        for (int i = 0; i < company_name.size(); i++)
-        {
-            res = res + (temp[i] * pow((p % m), i));
-        }
-        return res;
-    }
+    return hashValue;
 }
 
 bool check(Company *list_company, long long index)
@@ -72,13 +62,13 @@ Company *CreateHashTable(vector<Company> list_company)
         //Take the for-each-loop to go through the list_company
         long long index = HashString(i.name);
         long long cap_index;
-        while (check(hashTable, index)) //Collision Solution 
+        while (check(hashTable, index)) //Collision Solution
         {
             index++;
             if (index >= 2000)
                 index = 0;
             if (index == cap_index)
-                return;
+                return NULL;
         }
         hashTable[index] = i;
     }

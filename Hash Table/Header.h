@@ -1,6 +1,7 @@
 #ifndef _HASH_HEADER_H_
 #define _HASH_HEADER_H_
 
+#include <cmath>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -16,7 +17,7 @@ struct Company{
 };
 
 //Stuff
-string getLastCharacter(string name, int character_number);
+long long HashCalculate(int p, int i, int m);
 bool check (Company* list_company, long long index);
 
 //Hashing Function
