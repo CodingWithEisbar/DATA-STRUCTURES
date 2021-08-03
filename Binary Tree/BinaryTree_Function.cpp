@@ -1,15 +1,6 @@
 #include "BinaryTree_Header.h"
-Node *createTree(int a[], int n)
-{
-    Node *pRoot = NULL;
-    for (int i = 0; i < n; i++)
-    {
-        Insert(pRoot, a[i]);
-    }
-    return pRoot;
-}
 
-Node *creatNode(int Data)
+Node *createNode(int Data)
 {
     Node *temp = new Node;
     if (temp == NULL)
@@ -33,7 +24,7 @@ void Insert(Node *&pRoot, int x)
         //Chèn node bên trái của rễ
         if (temp->left == NULL)
         {
-            temp->left = creatNode(x);
+            temp->left = createNode(x);
             break;
         }
         //Nếu node bên trái đó không mang giá trị NULL thì tiến hành push vào queue
@@ -43,7 +34,7 @@ void Insert(Node *&pRoot, int x)
         //Chèn node về phía tay phải của rễ
         if (temp->right == NULL)
         {
-            temp->right = creatNode(x);
+            temp->right = createNode(x);
             break;
         }
         //Nếu node phải đó cũng không mang giá trị NULL thì tiến hành push vào queue
@@ -52,6 +43,15 @@ void Insert(Node *&pRoot, int x)
     }
 }
 
+Node *createTree(int a[], int n)
+{
+    Node *pRoot = NULL;
+    for (int i = 0; i < n; i++)
+    {
+        Insert(pRoot, a[i]);
+    }
+    return pRoot;
+}
 //Duyệt NLR (PreOrder Travesal)
 /*In ra node gốc
 Duyệt cây bên trái

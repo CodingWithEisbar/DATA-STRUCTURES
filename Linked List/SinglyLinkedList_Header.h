@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-
+typedef struct Node* List;
 //Create Node
 struct Node {
 	int Data;

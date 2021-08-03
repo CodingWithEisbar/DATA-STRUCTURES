@@ -21,7 +21,7 @@ void LeftRightNode(Node *pRoot);
 
 //Các hàm thao tác với cây nhị phân
 Node *createTree(int a[], int n);
-Node *creatNode(int Data);
+Node *createNode(int Data);
 void Insert(Node *&pRoot, int x);
 //Lab 4
 void levelOrder(Node *pRoot);
