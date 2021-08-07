@@ -21,7 +21,7 @@ int Height(Node *pRoot);
 //Các hàm thao tác với cây AVL
 void leftRotate(Node* &pRoot);
 void rightRotate(Node *&pRoot);
-
+void Insert(Node *&pRoot, int value);
 
 
 #endif
