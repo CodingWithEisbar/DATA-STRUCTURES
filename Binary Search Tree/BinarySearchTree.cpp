@@ -1,4 +1,15 @@
-#include "BinarySearchTree_Header.h"
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <queue>
+#include <algorithm>
+using namespace std;
+
+struct Node{
+    int key;
+    Node *left, *right; 
+};
 
 //.1
 Node *createNode(int data)
@@ -247,11 +258,11 @@ int findMin(Node *pRoot)
     return min(min(findMin(pRoot->left), findMin(pRoot->right)), pRoot->key);
 }
 
-int findMax(Node *pRoot)
+int maxNode(Node *pRoot)
 {
     if (pRoot == NULL)
         return 1000000;
-    return max(max(findMax(pRoot->left), findMax(pRoot->right)), pRoot->key);
+    return max(max(maxNode(pRoot->left), maxNode(pRoot->right)), pRoot->key);
 }
 
 //.19
@@ -259,7 +270,7 @@ bool isBST(Node *pRoot)
 {
     if (pRoot == NULL)
         return true;
-    if (pRoot->key < findMin(pRoot->right) && pRoot->key > findMax(pRoot->left))
+    if (pRoot->key < findMin(pRoot->right) && pRoot->key > maxNode(pRoot->left))
     {
         return isBST(pRoot->left) && isBST(pRoot->right);
     }
@@ -275,4 +286,9 @@ bool isFullBST(Node *pRoot)
     if (pRoot->left != NULL && pRoot->right != NULL)
         return isBST(pRoot) && isFullBST(pRoot->left) && isFullBST(pRoot->right);
     return false;
+}
+
+int main(){
+   
+    return 0;
 }

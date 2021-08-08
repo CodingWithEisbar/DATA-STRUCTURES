@@ -1,4 +1,15 @@
-#include "BinaryTree_Header.h"
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <vector>
+#include <queue>
+#include <algorithm>
+using namespace std;
+
+struct Node{
+    int key;
+    Node *left, *right; 
+};
 
 Node *createNode(int Data)
 {
@@ -208,4 +219,9 @@ void deleteTree(Node ** pRoot_ref)
     *pRoot_ref = NULL; 
     /*Nếu không set phần tử Root = NULL thì sẽ gây ra lỗi nếu user 
     cố gắng sử dụng con trỏ root để truy cập vào giá trị*/
+}
+
+int main(){
+
+    return 0;
 }
