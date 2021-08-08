@@ -6,9 +6,10 @@
 #include <algorithm>
 using namespace std;
 
-struct Node{
+struct Node
+{
     int key;
-    Node *left, *right; 
+    Node *left, *right;
 };
 
 Node *createNode(int Data)
@@ -22,8 +23,14 @@ Node *createNode(int Data)
     return temp;
 }
 
+//Nguồn: https://www.studytonight.com/post/insertion-adding-a-new-node-in-a-binary-tree-data-structure
 void Insert(Node *&pRoot, int x)
 {
+    if (pRoot == NULL)
+    {
+        pRoot = createNode(x);
+        return;
+    }
     Node *temp;
     queue<Node *> q;
     q.push(pRoot);
@@ -203,8 +210,9 @@ int countLeaf(Node *pRoot)
 xoá lần lượt ptử bên trái bên phải của cây và cuối cùng là node gốc của cây*/
 void deleteTreeMechanism(Node *pRoot)
 {
-    if(pRoot == NULL) return;
-    
+    if (pRoot == NULL)
+        return;
+
     //Đầu tiên chúng ta xoá hai node con của 1 node gốc
     deleteTreeMechanism(pRoot->left);
     deleteTreeMechanism(pRoot->right);
@@ -213,15 +221,21 @@ void deleteTreeMechanism(Node *pRoot)
     delete pRoot;
 }
 
-void deleteTree(Node ** pRoot_ref)
+void deleteTree(Node **pRoot_ref)
 {
     deleteTreeMechanism(*pRoot_ref);
-    *pRoot_ref = NULL; 
+    *pRoot_ref = NULL;
+    cout << "Tree Deleted" << endl;
     /*Nếu không set phần tử Root = NULL thì sẽ gây ra lỗi nếu user 
     cố gắng sử dụng con trỏ root để truy cập vào giá trị*/
 }
 
-int main(){
-
+int main()
+{
+    Node *pRoot = NULL;
+    int a[10] = {12, 15, 16, 11, 2, 4, 5, 6, 7, 10};
+    pRoot = createTree(a,10);
+    LeftNodeRight(pRoot);
+    deleteTree(&pRoot);
     return 0;
 }
