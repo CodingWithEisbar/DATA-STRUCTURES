@@ -36,7 +36,7 @@ void leftRotate(Node *&pRoot)
 {
     Node *p = pRoot->right;
     pRoot->right = p->left;
-    p->left = pRoot->right;
+    p->left = pRoot;
     pRoot = p;
 }
 
@@ -73,7 +73,7 @@ void balance(Node *&pRoot)
     }
 }
 
-void Insert(Node *&pRoot, int value)
+/*void Insert(Node *&pRoot, int value)
 {
     if (pRoot == NULL)
     {
@@ -114,6 +114,19 @@ void Insert(Node *&pRoot, int value)
             leftRotate(pRoot);
         }
     }
+}*/
+
+void Insert(Node*&pRoot, int value)
+{
+    if(pRoot == NULL)
+        pRoot = createNode(value);
+    if(pRoot->key == value)
+        return;
+    if(pRoot->key > value)
+        Insert(pRoot->left, value);
+    else if(pRoot->key < value)
+        Insert(pRoot->right, value);
+    balance(pRoot);
 }
 
 Node *createTree(int a[], int n)
@@ -148,7 +161,7 @@ void LevelOrder(Node *pRoot)
 void Remove(Node* &pRoot, int x)
 {
     if(pRoot == NULL) return;
-    if(pRoot->key > x)
+    else if(pRoot->key > x)
         Remove(pRoot->left,x);
     else if(pRoot->key < x)
         Remove(pRoot->right,x);
@@ -205,6 +218,7 @@ bool isBST(Node *pRoot)
     {
         return isBST(pRoot->left) && isBST(pRoot->right);
     }
+    return false;
 }
 
 bool isAVL(Node *pRoot)
@@ -219,7 +233,7 @@ int main()
 {
     int a[9] = {10, 30, 50, 40, 45, 60, 5, 1, 9};
     Node *pRoot = createTree(a, 9);
-    Remove(pRoot, 100);
+    Remove(pRoot, 30);
     LevelOrder(pRoot);
 
     return 0;
