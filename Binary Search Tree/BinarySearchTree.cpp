@@ -274,6 +274,7 @@ bool isBST(Node *pRoot)
     {
         return isBST(pRoot->left) && isBST(pRoot->right);
     }
+    return false;
 }
 
 //.20
