@@ -159,16 +159,16 @@ void Remove(Node* &pRoot, int x)
             pRoot = NULL;
         }
         else if(pRoot->left != NULL && pRoot->right == NULL){
-            Node* p = pRoot->left;
+            Node* p = pRoot;
             pRoot = pRoot->left;
             delete p;
         }
-        else if(pRoot->left == NULL && pRoot->right == NULL){
-            Node* p = pRoot->right;
+        else if(pRoot->left == NULL && pRoot->right != NULL){
+            Node* p = pRoot;
             pRoot = pRoot->right;
             delete p;
         }
-        else if(pRoot->left == NULL && pRoot->right == NULL){
+        else if(pRoot->left != NULL && pRoot->right != NULL){
             Node* p = pRoot->right;
             while(p->left != NULL){
                 p = p->left;
